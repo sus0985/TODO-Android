@@ -9,10 +9,12 @@ import com.example.todo.ui.base.BaseFragment
 class HomeFragment :
     BaseFragment<HomeViewModel, FragmentHomeBinding>(R.layout.fragment_home, HomeViewModel::class) {
 
+    private val adapter: HomeTagAdapter by lazy { HomeTagAdapter() }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
+
+        binding.rvTagHome.adapter = adapter
     }
-
-
 }
