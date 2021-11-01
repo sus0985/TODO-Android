@@ -7,18 +7,11 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import kotlin.reflect.KClass
 
-abstract class BaseFragment<V : ViewModel, T : ViewDataBinding>(
-    private val layoutID: Int,
-    private val kClass: KClass<V>
-) : Fragment() {
+abstract class BaseFragment<T : ViewDataBinding>(private val layoutID: Int) : Fragment() {
 
     private var _binding: T? = null
     protected val binding get() = _binding!!
-    protected lateinit var viewModel: V
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,7 +20,11 @@ abstract class BaseFragment<V : ViewModel, T : ViewDataBinding>(
     ): View? {
         _binding = DataBindingUtil.inflate(inflater, layoutID, container, false)
         binding.lifecycleOwner = this
-        viewModel = ViewModelProvider(this).get(kClass.java)
         return binding.root
+    }
+
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
     }
 }
