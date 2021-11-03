@@ -22,7 +22,7 @@ class HomeTagAdapter : ListAdapter<Tag, HomeTagAdapter.TagViewHolder>(TagDiffUti
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Tag) {
-            binding.tvTagContent.text = item.text
+            binding.item = item
         }
 
         companion object {

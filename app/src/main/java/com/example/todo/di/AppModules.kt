@@ -6,6 +6,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.todo.database.AppDatabase
 import com.example.todo.model.Tag
 import com.example.todo.repository.HomeRepository
+import com.example.todo.ui.home.HomeTagAdapter
 import com.example.todo.ui.home.HomeViewModel
 import com.example.todo.ui.main.MainViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -16,14 +17,15 @@ import org.koin.dsl.module
 
 val appModule = module {
     single {
-        Room.databaseBuilder(get(), AppDatabase::class.java, "TODO").addCallback(object : RoomDatabase.Callback() {
-            override fun onCreate(db: SupportSQLiteDatabase) {
-                super.onCreate(db)
-                CoroutineScope(Dispatchers.IO).launch {
-                    get<AppDatabase>().tagDao().insertTag(Tag(1,"TAG"))
+        Room.databaseBuilder(get(), AppDatabase::class.java, "TODO")
+            .addCallback(object : RoomDatabase.Callback() {
+                override fun onCreate(db: SupportSQLiteDatabase) {
+                    super.onCreate(db)
+                    CoroutineScope(Dispatchers.IO).launch {
+                        get<AppDatabase>().tagDao().insertTag(Tag(1, "TAG"))
+                    }
                 }
-            }
-        }).build()
+            }).build()
     }
 
     single {
@@ -32,6 +34,10 @@ val appModule = module {
 
     single {
         HomeRepository(get())
+    }
+
+    factory {
+        HomeTagAdapter()
     }
 }
 
