@@ -2,9 +2,11 @@ package com.example.todo.ui.home
 
 import android.os.Bundle
 import android.view.View
+import android.widget.PopupMenu
 import com.example.todo.R
 import com.example.todo.databinding.FragmentHomeBinding
 import com.example.todo.ui.base.BaseFragment
+import com.example.todo.ui.main.MainActivity
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -19,5 +21,27 @@ class HomeFragment :
         binding.viewModel = viewModel
 
         binding.rvTagHome.adapter = adapter
+
+        initClickListener()
+    }
+
+    private fun initClickListener() {
+
+        binding.btnMenu.setOnClickListener {
+            PopupMenu(requireContext(), it).also { popup ->
+                popup.menuInflater.inflate(R.menu.category_menu, popup.menu)
+                popup.setOnMenuItemClickListener { menu ->
+                    when (menu.itemId) {
+                        R.id.category_management -> {
+
+                        }
+                        R.id.task_search -> {
+
+                        }
+                    }
+                    false
+                }
+            }.show()
+        }
     }
 }
