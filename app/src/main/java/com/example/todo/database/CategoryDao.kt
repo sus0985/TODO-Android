@@ -4,14 +4,14 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
-import com.example.todo.model.Tag
+import com.example.todo.model.Category
 
 @Dao
-interface TagDao {
+interface CategoryDao {
 
-    @Query("SELECT * from TAG")
-    suspend fun getAllTagOrNull(): List<Tag>
+    @Query("SELECT * from CATEGORY")
+    suspend fun getAllTagOrNull(): List<Category>
 
     @Insert(onConflict = REPLACE)
-    suspend fun insertTag(tag: Tag)
+    suspend fun insertTag(category: Category)
 }

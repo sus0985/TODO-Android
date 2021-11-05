@@ -1,8 +1,8 @@
 package com.example.todo.repository
 
-import com.example.todo.model.Tag
+import com.example.todo.model.Category
 
 interface HomeRepository {
 
-    suspend fun getAllTagOrNull(): List<Tag>?
+    suspend fun getAllTagOrNull(): List<Category>?
 }

@@ -4,11 +4,11 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.todo.database.AppDatabase
-import com.example.todo.model.Tag
+import com.example.todo.model.Category
 import com.example.todo.repository.HomeRepository
 import com.example.todo.repository.HomeRepositoryImpl
 import com.example.todo.repository.LocalDataSource
-import com.example.todo.ui.home.HomeTagAdapter
+import com.example.todo.ui.home.HomeCategoryAdapter
 import com.example.todo.ui.home.HomeViewModel
 import com.example.todo.ui.home.category.CategoryManageViewModel
 import com.example.todo.ui.main.MainViewModel
@@ -26,14 +26,14 @@ val appModule = module {
                 override fun onCreate(db: SupportSQLiteDatabase) {
                     super.onCreate(db)
                     CoroutineScope(Dispatchers.IO).launch {
-                        get<AppDatabase>().tagDao().insertTag(Tag(1, "TAG"))
+                        get<AppDatabase>().categoryDao().insertTag(Category(1, "TAG"))
                     }
                 }
             }).build()
     }
 
     single {
-        get<AppDatabase>().tagDao()
+        get<AppDatabase>().categoryDao()
     }
 
     single {
@@ -45,7 +45,7 @@ val appModule = module {
     }
 
     factory {
-        HomeTagAdapter()
+        HomeCategoryAdapter()
     }
 }
 

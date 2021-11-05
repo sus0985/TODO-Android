@@ -1,8 +1,8 @@
 package com.example.todo.repository
 
-import com.example.todo.database.TagDao
+import com.example.todo.database.CategoryDao
 
-class LocalDataSource(private val tagDao: TagDao)  {
+class LocalDataSource(private val categoryDao: CategoryDao)  {
 
-    suspend fun getAllTagOrNull() = tagDao.getAllTagOrNull()
+    suspend fun getAllTagOrNull() = categoryDao.getAllTagOrNull()
 }

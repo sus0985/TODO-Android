@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.example.todo.model.Tag" />
+            type="com.example.todo.model.Category" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,7 +15,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/tv_tag_content"
+            android:id="@+id/tv_category_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="8dp"
