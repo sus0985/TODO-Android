@@ -1,7 +1,8 @@
 package com.example.todo.repository
 
-import com.example.todo.database.TagDao
+import com.example.todo.model.Tag
 
-class HomeRepository(private val tagDao: TagDao) {
-    suspend fun getAllTagOrNull() = tagDao.getAllTagOrNull()
+interface HomeRepository {
+
+    suspend fun getAllTagOrNull(): List<Tag>?
 }
