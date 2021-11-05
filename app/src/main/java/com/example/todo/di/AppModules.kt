@@ -10,6 +10,7 @@ import com.example.todo.repository.HomeRepositoryImpl
 import com.example.todo.repository.LocalDataSource
 import com.example.todo.ui.home.HomeTagAdapter
 import com.example.todo.ui.home.HomeViewModel
+import com.example.todo.ui.home.category.CategoryManageViewModel
 import com.example.todo.ui.main.MainViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -54,5 +55,8 @@ val viewModelModule = module {
     }
     viewModel {
         HomeViewModel(get())
+    }
+    viewModel {
+        CategoryManageViewModel(get())
     }
 }
