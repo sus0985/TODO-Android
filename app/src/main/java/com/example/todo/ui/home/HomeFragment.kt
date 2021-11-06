@@ -3,6 +3,7 @@ package com.example.todo.ui.home
 import android.os.Bundle
 import android.view.View
 import android.widget.PopupMenu
+import androidx.navigation.fragment.findNavController
 import com.example.todo.R
 import com.example.todo.databinding.FragmentHomeBinding
 import com.example.todo.ui.base.BaseFragment
@@ -32,7 +33,7 @@ class HomeFragment :
                 popup.setOnMenuItemClickListener { menu ->
                     when (menu.itemId) {
                         R.id.category_management -> {
-
+                            findNavController().navigate(R.id.action_navigation_home_to_fragment_category_manage)
                         }
                         R.id.task_search -> {
 
