@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.example.todo.model.Category" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/view_color_circle"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/background_round"
+            android:backgroundTint="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:backgroundTint="@color/purple_700" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{item.text}"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/view_color_circle"
+            app:layout_constraintStart_toEndOf="@id/view_color_circle"
+            app:layout_constraintTop_toTopOf="@id/view_color_circle"
+            tools:text="TEXT" />
+
+        <TextView
+            android:id="@+id/tv_category_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/view_color_circle"
+            app:layout_constraintEnd_toStartOf="@id/iv_menu"
+            app:layout_constraintTop_toTopOf="@id/view_color_circle"
+            tools:text="COUNT" />
+
+        <ImageView
+            android:id="@+id/iv_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:paddingHorizontal="10dp"
+            android:src="@drawable/ic_vertical_dot"
+            app:layout_constraintBottom_toBottomOf="@id/view_color_circle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/view_color_circle" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

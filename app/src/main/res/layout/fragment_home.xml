@@ -25,7 +25,7 @@
             app:layout_constraintEnd_toStartOf="@id/btn_menu"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            bind:setHomeTagItems="@{viewModel.items}"
+            bind:setHomeCategoryItems="@{viewModel.items}"
             tools:listitem="@layout/item_home_category" />
 
         <ImageView
