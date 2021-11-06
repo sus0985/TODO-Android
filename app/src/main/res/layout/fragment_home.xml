@@ -32,14 +32,15 @@
             android:id="@+id/btn_menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             android:layout_marginEnd="15dp"
             android:background="@drawable/ripple_unbounded"
             android:clickable="true"
             android:focusable="true"
-            android:src="@drawable/ic_menu"
+            android:paddingHorizontal="10dp"
+            android:src="@drawable/ic_vertical_dot"
+            app:layout_constraintBottom_toBottomOf="@id/rv_tag_home"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/rv_tag_home" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
