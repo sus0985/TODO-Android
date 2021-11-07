@@ -2,6 +2,7 @@ package com.example.todo.ui.home.category
 
 import android.os.Bundle
 import android.view.View
+import androidx.navigation.fragment.findNavController
 import com.example.todo.R
 import com.example.todo.databinding.FragmentCategoryManageBinding
 import com.example.todo.ui.base.BaseFragment
@@ -19,5 +20,9 @@ class CategoryManageFragment :
 
         binding.viewModel = viewModel
         binding.rvCategory.adapter = adapter
+
+        binding.btnBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 }
