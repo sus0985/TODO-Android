@@ -5,6 +5,7 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.todo.database.AppDatabase
 import com.example.todo.model.Category
+import com.example.todo.model.ColorCode
 import com.example.todo.repository.HomeRepository
 import com.example.todo.repository.HomeRepositoryImpl
 import com.example.todo.repository.LocalDataSource
@@ -27,7 +28,9 @@ val appModule = module {
                 override fun onCreate(db: SupportSQLiteDatabase) {
                     super.onCreate(db)
                     CoroutineScope(Dispatchers.IO).launch {
-                        get<AppDatabase>().categoryDao().insertTag(Category(1, "TAG"))
+                        get<AppDatabase>().categoryDao().insertTag(Category(1, "TASK", ColorCode.LIGHT_BLUE, 0))
+                        get<AppDatabase>().categoryDao().insertTag(Category(2, "PRIVATE", ColorCode.CHOCOLATE, 0))
+                        get<AppDatabase>().categoryDao().insertTag(Category(3, "WISH LIST", ColorCode.PINK, 0))
                     }
                 }
             }).build()
