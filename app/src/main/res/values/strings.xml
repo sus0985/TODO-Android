@@ -9,4 +9,5 @@
     <!-- Category Menu -->
     <string name="category_management">Category Management</string>
     <string name="task_search">Task Search</string>
+    <string name="create_new">➕ Create New</string>
 </resources>
