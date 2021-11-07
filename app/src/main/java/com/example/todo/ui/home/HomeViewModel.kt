@@ -13,7 +13,19 @@ class HomeViewModel(private val repository: HomeRepository) : ViewModel() {
 
     init {
         viewModelScope.launch {
-            _items.postValue(repository.getAllTagOrNull())
+            _items.postValue(repository.loadAllCategoryOrNull())
+        }
+    }
+
+    fun insertCategory(category: Category) {
+        viewModelScope.launch {
+            repository.insertCategory(category)
+        }
+    }
+
+    fun loadAllCategory() {
+        viewModelScope.launch {
+            _items.postValue(repository.loadAllCategoryOrNull())
         }
     }
 }

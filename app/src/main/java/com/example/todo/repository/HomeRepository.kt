@@ -4,5 +4,7 @@ import com.example.todo.model.Category
 
 interface HomeRepository {
 
-    suspend fun getAllTagOrNull(): List<Category>?
+    suspend fun loadAllCategoryOrNull(): List<Category>?
+
+    suspend fun insertCategory(category: Category)
 }
