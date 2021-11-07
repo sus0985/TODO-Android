@@ -28,9 +28,12 @@ val appModule = module {
                 override fun onCreate(db: SupportSQLiteDatabase) {
                     super.onCreate(db)
                     CoroutineScope(Dispatchers.IO).launch {
-                        get<AppDatabase>().categoryDao().insertCategory(Category(1, "TASK", ColorCode.LIGHT_BLUE, 0))
-                        get<AppDatabase>().categoryDao().insertCategory(Category(2, "PRIVATE", ColorCode.CHOCOLATE, 0))
-                        get<AppDatabase>().categoryDao().insertCategory(Category(3, "WISH LIST", ColorCode.PINK, 0))
+                        get<AppDatabase>().categoryDao()
+                            .insertCategory(Category("TASK", ColorCode.LIGHT_BLUE, 0))
+                        get<AppDatabase>().categoryDao()
+                            .insertCategory(Category("PRIVATE", ColorCode.CHOCOLATE, 0))
+                        get<AppDatabase>().categoryDao()
+                            .insertCategory(Category("WISH LIST", ColorCode.PINK, 0))
                     }
                 }
             }).build()
