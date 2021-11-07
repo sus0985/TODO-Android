@@ -1,5 +1,8 @@
 package com.example.todo.common
 
+import android.content.res.ColorStateList
+import android.graphics.Color
+import android.view.View
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todo.model.Category
@@ -14,4 +17,9 @@ fun setHomeTagItems(listAdapter: RecyclerView, list: List<Category>?) {
 @BindingAdapter("bind:setCategoryManageItems")
 fun setCategoryManageItems(listAdapter: RecyclerView, list: List<Category>?) {
     (listAdapter.adapter as CategoryManageAdapter).submitList(list)
+}
+
+@BindingAdapter("setColor")
+fun setColor(view: View, color: String) {
+    view.backgroundTintList = ColorStateList.valueOf(Color.parseColor(color));
 }
