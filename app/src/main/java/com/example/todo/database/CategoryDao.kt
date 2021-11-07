@@ -10,8 +10,8 @@ import com.example.todo.model.Category
 interface CategoryDao {
 
     @Query("SELECT * from CATEGORY")
-    suspend fun getAllTagOrNull(): List<Category>
+    suspend fun loadAllCategoryOrNull(): List<Category>
 
     @Insert(onConflict = REPLACE)
-    suspend fun insertTag(category: Category)
+    suspend fun insertCategory(category: Category)
 }
