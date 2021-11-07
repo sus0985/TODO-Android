@@ -10,11 +10,15 @@ import android.view.*
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.DialogFragment
 import com.example.todo.databinding.DialogCategoryManageBinding
+import com.example.todo.model.Category
+import com.example.todo.model.ColorCode
+import com.example.todo.ui.home.HomeViewModel
 
-class CategoryManageDialog(private val viewModel: CategoryManageViewModel) : DialogFragment() {
+class CategoryManageDialog(private val viewModel: HomeViewModel) : DialogFragment() {
 
     private var _binding: DialogCategoryManageBinding? = null
     private val binding get() = _binding!!
+    private var category = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +43,7 @@ class CategoryManageDialog(private val viewModel: CategoryManageViewModel) : Dia
 
         binding.etCategory.doAfterTextChanged {
             binding.tvTextCount.text = String.format("%02d", it?.length)
+            category = it.toString()
         }
 
         binding.btnCancel.setOnClickListener {
@@ -46,6 +51,8 @@ class CategoryManageDialog(private val viewModel: CategoryManageViewModel) : Dia
         }
 
         binding.btnSave.setOnClickListener {
+            viewModel.insertCategory(Category(category, ColorCode.CHOCOLATE, 0))
+            viewModel.loadAllCategory()
             dismiss()
         }
     }

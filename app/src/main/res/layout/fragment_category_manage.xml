@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.todo.ui.home.category.CategoryManageViewModel" />
+            type="com.example.todo.ui.home.HomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,6 +20,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="15dp"
+            android:background="@drawable/ripple_unbounded"
+            android:clickable="true"
+            android:focusable="true"
             android:src="@drawable/ic_arrow_left"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -50,8 +53,10 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_category"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginBottom="20dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@id/btn_create_category"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/line_top"
@@ -63,8 +68,10 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/background_light_blue_radius_5dp"
             android:clickable="true"
+            android:elevation="3dp"
             android:focusable="true"
             android:foreground="@drawable/ripple_unbounded"
             android:gravity="center"
@@ -73,10 +80,9 @@
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:elevation="3dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rv_category"
             bind:ignore="UnusedAttribute" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
