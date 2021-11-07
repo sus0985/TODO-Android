@@ -10,4 +10,8 @@
     <string name="category_management">Category Management</string>
     <string name="task_search">Task Search</string>
     <string name="create_new">➕ Create New</string>
+    <string name="create_new_category">Create new category</string>
+    <string name="input_here">Input here.</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
 </resources>

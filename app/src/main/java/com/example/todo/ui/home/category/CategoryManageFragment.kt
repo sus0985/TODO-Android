@@ -24,5 +24,9 @@ class CategoryManageFragment :
         binding.btnBack.setOnClickListener {
             findNavController().popBackStack()
         }
+
+        binding.btnCreateCategory.setOnClickListener {
+            val dialog = CategoryManageDialog(viewModel).show(requireActivity().supportFragmentManager, null)
+        }
     }
 }
