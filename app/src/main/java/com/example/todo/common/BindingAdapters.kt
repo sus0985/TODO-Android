@@ -21,5 +21,5 @@ fun setCategoryManageItems(listAdapter: RecyclerView, list: List<Category>?) {
 
 @BindingAdapter("setColor")
 fun setColor(view: View, color: String) {
-    view.backgroundTintList = ColorStateList.valueOf(Color.parseColor(color));
+    view.backgroundTintList = ColorStateList.valueOf(Color.parseColor(color))
 }
