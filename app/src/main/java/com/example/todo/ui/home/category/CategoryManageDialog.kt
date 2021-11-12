@@ -19,6 +19,11 @@ class CategoryManageDialog(private val viewModel: HomeViewModel) : DialogFragmen
     private var _binding: DialogCategoryManageBinding? = null
     private val binding get() = _binding!!
     private var category = ""
+    private val adapter by lazy {
+        ColorAdapter {
+            viewModel.selectColor(it)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +46,9 @@ class CategoryManageDialog(private val viewModel: HomeViewModel) : DialogFragmen
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
+
         binding.etCategory.doAfterTextChanged {
             binding.tvTextCount.text = String.format("%02d", it?.length)
             category = it.toString()
@@ -55,6 +63,8 @@ class CategoryManageDialog(private val viewModel: HomeViewModel) : DialogFragmen
             viewModel.loadAllCategory()
             dismiss()
         }
+
+        binding.rvColor.adapter = adapter
     }
 
     override fun onResume() {
@@ -62,6 +72,7 @@ class CategoryManageDialog(private val viewModel: HomeViewModel) : DialogFragmen
 
         val size = Point()
 
+        // Version 분기
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             context?.display?.getRealSize(size)
         } else {
