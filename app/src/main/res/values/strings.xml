@@ -14,4 +14,5 @@
     <string name="input_here">Input here.</string>
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
+    <string name="selected_color">Selected Color</string>
 </resources>

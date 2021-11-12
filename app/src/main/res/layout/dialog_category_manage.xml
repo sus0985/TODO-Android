@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.todo.ui.home.HomeViewModel" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -35,6 +43,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_color"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="@id/et_category"
+            app:layout_constraintStart_toStartOf="@id/et_category"
+            app:layout_constraintTop_toBottomOf="@id/et_category"
+            bind:setColorItems="@{viewModel.colors}"
+            tools:itemCount="1"
+            tools:listitem="@layout/item_color" />
+
         <TextView
             android:id="@+id/tv_text_count"
             android:layout_width="wrap_content"
@@ -52,6 +74,17 @@
             android:text="/50"
             app:layout_constraintBottom_toBottomOf="@id/et_category"
             app:layout_constraintEnd_toEndOf="@id/et_category" />
+
+        <TextView
+            android:id="@+id/tv_selected_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/selected_color"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/btn_save"
+            app:layout_constraintStart_toStartOf="@id/et_category"
+            app:layout_constraintTop_toTopOf="@id/btn_save" />
 
         <TextView
             android:id="@+id/btn_cancel"
@@ -82,6 +115,17 @@
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@id/et_category"
-            app:layout_constraintTop_toBottomOf="@id/et_category" />
+            app:layout_constraintTop_toBottomOf="@id/rv_color" />
+
+        <View
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/background_round"
+            app:layout_constraintBottom_toBottomOf="@id/tv_selected_color"
+            app:layout_constraintStart_toEndOf="@id/tv_selected_color"
+            app:layout_constraintTop_toTopOf="@id/tv_selected_color"
+            app:setColor="@{viewModel.selectedColor.code}"
+            tools:backgroundTint="@color/black" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
