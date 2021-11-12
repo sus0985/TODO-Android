@@ -59,7 +59,7 @@ class CategoryManageDialog(private val viewModel: HomeViewModel) : DialogFragmen
         }
 
         binding.btnSave.setOnClickListener {
-            viewModel.insertCategory(Category(category, ColorCode.CHOCOLATE, 0))
+            viewModel.insertCategory(Category(category, viewModel.selectedColor.value!!, 0))
             viewModel.loadAllCategory()
             dismiss()
         }
