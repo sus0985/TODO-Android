@@ -11,7 +11,6 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.DialogFragment
 import com.example.todo.databinding.DialogCategoryManageBinding
 import com.example.todo.model.Category
-import com.example.todo.model.ColorCode
 import com.example.todo.ui.home.HomeViewModel
 
 class CategoryManageDialog(private val viewModel: HomeViewModel) : DialogFragment() {
