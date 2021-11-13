@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.todo.databinding.ItemCategoryManageBinding
 import com.example.todo.model.Category
 
-class CategoryManageAdapter :
+class CategoryManageAdapter(private val itemClickListener: ()-> Unit) :
     ListAdapter<Category, CategoryManageAdapter.ManageViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
