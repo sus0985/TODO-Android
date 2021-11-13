@@ -11,7 +11,6 @@ import com.example.todo.repository.HomeRepositoryImpl
 import com.example.todo.repository.LocalDataSource
 import com.example.todo.ui.home.HomeCategoryAdapter
 import com.example.todo.ui.home.HomeViewModel
-import com.example.todo.ui.home.category.CategoryManageAdapter
 import com.example.todo.ui.main.MainViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -52,10 +51,6 @@ val appModule = module {
 
     factory {
         HomeCategoryAdapter()
-    }
-
-    factory {
-        CategoryManageAdapter()
     }
 }
 

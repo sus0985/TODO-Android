@@ -1,22 +1,23 @@
 package com.example.todo.ui.home.category
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.example.todo.R
 import com.example.todo.databinding.FragmentCategoryManageBinding
 import com.example.todo.ui.base.BaseFragment
 import com.example.todo.ui.home.HomeViewModel
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CategoryManageFragment :
     BaseFragment<FragmentCategoryManageBinding>(R.layout.fragment_category_manage) {
 
     private val viewModel: HomeViewModel by sharedViewModel()
-    private val adapter: CategoryManageAdapter by inject()
+    private val adapter: CategoryManageAdapter by lazy {
+        CategoryManageAdapter {
+
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -29,7 +30,7 @@ class CategoryManageFragment :
         }
 
         binding.btnCreateCategory.setOnClickListener {
-            val dialog = CategoryManageDialog(viewModel).show(requireActivity().supportFragmentManager, null)
+            CategoryManageDialog(viewModel).show(requireActivity().supportFragmentManager, null)
         }
     }
 }
