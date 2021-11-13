@@ -1,6 +1,7 @@
 package com.example.todo.ui.home.category
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -8,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.todo.databinding.ItemCategoryManageBinding
 import com.example.todo.model.Category
 
-class CategoryManageAdapter(private val itemClickListener: ()-> Unit) :
+class CategoryManageAdapter(private val itemClickListener: (Category, View)-> Unit) :
     ListAdapter<Category, CategoryManageAdapter.ManageViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
@@ -25,8 +26,14 @@ class CategoryManageAdapter(private val itemClickListener: ()-> Unit) :
         holder.bind(getItem(position))
     }
 
-    class ManageViewHolder(private val binding: ItemCategoryManageBinding) :
+    inner class ManageViewHolder(private val binding: ItemCategoryManageBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.ivMenu.setOnClickListener {
+                itemClickListener(getItem(adapterPosition), it)
+            }
+        }
 
         fun bind(item: Category) {
             binding.item = item

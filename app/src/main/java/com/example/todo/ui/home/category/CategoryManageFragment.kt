@@ -2,6 +2,7 @@ package com.example.todo.ui.home.category
 
 import android.os.Bundle
 import android.view.View
+import android.widget.PopupMenu
 import androidx.navigation.fragment.findNavController
 import com.example.todo.R
 import com.example.todo.databinding.FragmentCategoryManageBinding
@@ -14,8 +15,21 @@ class CategoryManageFragment :
 
     private val viewModel: HomeViewModel by sharedViewModel()
     private val adapter: CategoryManageAdapter by lazy {
-        CategoryManageAdapter {
+        CategoryManageAdapter { category, view ->
+            PopupMenu(requireContext(), view).also { popup ->
+                popup.menuInflater.inflate(R.menu.category_edit_menu, popup.menu)
+                popup.setOnMenuItemClickListener { menu ->
+                    when (menu.itemId) {
+                        R.id.category_edit-> {
 
+                        }
+                        R.id.category_delete -> {
+
+                        }
+                    }
+                    false
+                }
+            }.show()
         }
     }
 
