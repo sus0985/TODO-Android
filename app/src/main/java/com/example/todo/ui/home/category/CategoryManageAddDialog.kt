@@ -9,13 +9,13 @@ import android.os.Bundle
 import android.view.*
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.DialogFragment
-import com.example.todo.databinding.DialogCategoryManageBinding
+import com.example.todo.databinding.DialogCategoryAddBinding
 import com.example.todo.model.Category
 import com.example.todo.ui.home.HomeViewModel
 
-class CategoryManageDialog(private val viewModel: HomeViewModel) : DialogFragment() {
+class CategoryManageAddDialog(private val viewModel: HomeViewModel) : DialogFragment() {
 
-    private var _binding: DialogCategoryManageBinding? = null
+    private var _binding: DialogCategoryAddBinding? = null
     private val binding get() = _binding!!
     private var category = ""
     private val adapter by lazy {
@@ -34,7 +34,7 @@ class CategoryManageDialog(private val viewModel: HomeViewModel) : DialogFragmen
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = DialogCategoryManageBinding.inflate(inflater, container, false)
+        _binding = DialogCategoryAddBinding.inflate(inflater, container, false)
 
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog?.window?.requestFeature(Window.FEATURE_NO_TITLE)
