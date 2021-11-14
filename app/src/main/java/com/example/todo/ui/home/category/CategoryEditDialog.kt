@@ -16,7 +16,7 @@ import com.example.todo.ui.home.HomeViewModel
 class CategoryEditDialog(
     private val viewModel: HomeViewModel,
     private val selectedCategory: Category,
-    private val listener: ()->Unit
+    private val editListener: () -> Unit
 ) : DialogFragment() {
 
     private var _binding: DialogCategoryAddBinding? = null
@@ -24,7 +24,6 @@ class CategoryEditDialog(
     private var category = selectedCategory.text
     private val adapter by lazy {
         ColorAdapter {
-            selectedCategory.color = it
             viewModel.selectColor(it)
         }
     }
@@ -60,7 +59,6 @@ class CategoryEditDialog(
         binding.etCategory.doAfterTextChanged {
             binding.tvTextCount.text = String.format("%02d", it?.length)
             category = it.toString()
-            selectedCategory.text = it.toString()
         }
 
         binding.btnCancel.setOnClickListener {
@@ -68,8 +66,10 @@ class CategoryEditDialog(
         }
 
         binding.btnSave.setOnClickListener {
+            selectedCategory.text = category
+            selectedCategory.color = viewModel.selectedColor.value!!
             viewModel.updateCategory(selectedCategory)
-            listener()
+            editListener()
             dismiss()
         }
 
