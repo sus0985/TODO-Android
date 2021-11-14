@@ -15,13 +15,18 @@ class CategoryManageFragment :
 
     private val viewModel: HomeViewModel by sharedViewModel()
     private val adapter: CategoryManageAdapter by lazy {
-        CategoryManageAdapter { category, view ->
+        CategoryManageAdapter { category, view, position ->
             PopupMenu(requireContext(), view).also { popup ->
                 popup.menuInflater.inflate(R.menu.category_edit_menu, popup.menu)
                 popup.setOnMenuItemClickListener { menu ->
                     when (menu.itemId) {
                         R.id.category_edit -> {
-
+                            CategoryEditDialog(
+                                viewModel,
+                                category
+                            ) {
+                                adapter.notifyEdit(position)
+                            }.show(requireActivity().supportFragmentManager, null)
                         }
                         R.id.category_delete -> {
                             CategoryManageAskDialog(

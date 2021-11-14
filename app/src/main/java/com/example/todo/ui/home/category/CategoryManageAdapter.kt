@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.todo.databinding.ItemCategoryManageBinding
 import com.example.todo.model.Category
 
-class CategoryManageAdapter(private val itemClickListener: (Category, View)-> Unit) :
+class CategoryManageAdapter(private val itemClickListener: (Category, View, Int) -> Unit) :
     ListAdapter<Category, CategoryManageAdapter.ManageViewHolder>(diffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
@@ -26,12 +26,16 @@ class CategoryManageAdapter(private val itemClickListener: (Category, View)-> Un
         holder.bind(getItem(position))
     }
 
+    fun notifyEdit(position: Int) {
+        notifyItemChanged(position)
+    }
+
     inner class ManageViewHolder(private val binding: ItemCategoryManageBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         init {
             binding.ivMenu.setOnClickListener {
-                itemClickListener(getItem(adapterPosition), it)
+                itemClickListener(getItem(adapterPosition), it, adapterPosition)
             }
         }
 
@@ -43,10 +47,10 @@ class CategoryManageAdapter(private val itemClickListener: (Category, View)-> Un
     companion object {
         val diffUtil = object : DiffUtil.ItemCallback<Category>() {
             override fun areItemsTheSame(oldItem: Category, newItem: Category) =
-                oldItem.id == newItem.id
+                oldItem == newItem
 
             override fun areContentsTheSame(oldItem: Category, newItem: Category) =
-                oldItem == newItem
+                oldItem.id == newItem.id && oldItem.text == newItem.text
         }
     }
 }

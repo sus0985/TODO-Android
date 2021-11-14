@@ -32,18 +32,17 @@ class HomeViewModel(private val repository: HomeRepository) : ViewModel() {
     val selectedColor: LiveData<ColorCode> get() = _selectedColor
 
     init {
-        viewModelScope.launch {
-            _items.postValue(repository.loadAllCategoryOrNull())
-        }
+        loadAllCategory()
     }
 
     fun insertCategory(category: Category) {
         viewModelScope.launch {
             repository.insertCategory(category)
+            loadAllCategory()
         }
     }
 
-    fun loadAllCategory() {
+    private fun loadAllCategory() {
         viewModelScope.launch {
             _items.postValue(repository.loadAllCategoryOrNull())
         }
@@ -51,5 +50,19 @@ class HomeViewModel(private val repository: HomeRepository) : ViewModel() {
 
     fun selectColor(color: ColorCode) {
         _selectedColor.value = color
+    }
+
+    fun deleteCategory(category: Category) {
+        viewModelScope.launch {
+            repository.deleteCategory(category)
+            loadAllCategory()
+        }
+    }
+
+    fun updateCategory(category: Category) {
+        viewModelScope.launch {
+            repository.updateCategory(category)
+            loadAllCategory()
+        }
     }
 }

@@ -13,13 +13,18 @@ import com.example.todo.databinding.DialogCategoryAddBinding
 import com.example.todo.model.Category
 import com.example.todo.ui.home.HomeViewModel
 
-class CategoryManageAddDialog(private val viewModel: HomeViewModel) : DialogFragment() {
+class CategoryEditDialog(
+    private val viewModel: HomeViewModel,
+    private val selectedCategory: Category,
+    private val listener: ()->Unit
+) : DialogFragment() {
 
     private var _binding: DialogCategoryAddBinding? = null
     private val binding get() = _binding!!
-    private var category = ""
+    private var category = selectedCategory.text
     private val adapter by lazy {
         ColorAdapter {
+            selectedCategory.color = it
             viewModel.selectColor(it)
         }
     }
@@ -45,12 +50,17 @@ class CategoryManageAddDialog(private val viewModel: HomeViewModel) : DialogFrag
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.selectColor(selectedCategory.color)
+
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
+
+        binding.etCategory.setText(category)
 
         binding.etCategory.doAfterTextChanged {
             binding.tvTextCount.text = String.format("%02d", it?.length)
             category = it.toString()
+            selectedCategory.text = it.toString()
         }
 
         binding.btnCancel.setOnClickListener {
@@ -58,7 +68,8 @@ class CategoryManageAddDialog(private val viewModel: HomeViewModel) : DialogFrag
         }
 
         binding.btnSave.setOnClickListener {
-            viewModel.insertCategory(Category(category, viewModel.selectedColor.value!!, 0))
+            viewModel.updateCategory(selectedCategory)
+            listener()
             dismiss()
         }
 

@@ -1,9 +1,12 @@
 package com.example.todo.ui.home.category
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import androidx.fragment.app.DialogFragment
 import com.example.todo.databinding.DialogCategoryDeleteBinding
 import com.example.todo.model.Category
@@ -20,6 +23,10 @@ class CategoryManageAskDialog(private val viewModel: HomeViewModel,private val c
         savedInstanceState: Bundle?
     ): View {
         _binding = DialogCategoryDeleteBinding.inflate(inflater, container, false)
+
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog?.window?.requestFeature(Window.FEATURE_NO_TITLE)
+
         return binding.root
     }
 
@@ -31,7 +38,8 @@ class CategoryManageAskDialog(private val viewModel: HomeViewModel,private val c
         }
 
         binding.tvDelete.setOnClickListener {
-
+            viewModel.deleteCategory(category)
+            dismiss()
         }
     }
 

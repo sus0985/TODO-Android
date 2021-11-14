@@ -42,10 +42,10 @@ class ColorAdapter(private val itemClickListener: (ColorCode) -> Unit) :
     companion object {
         val diffUtil = object : DiffUtil.ItemCallback<ColorCode>() {
             override fun areItemsTheSame(oldItem: ColorCode, newItem: ColorCode) =
-                oldItem.code == newItem.code
+                oldItem == newItem
 
             override fun areContentsTheSame(oldItem: ColorCode, newItem: ColorCode) =
-                oldItem == newItem
+                oldItem.code == newItem.code
         }
     }
 }
