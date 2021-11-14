@@ -20,11 +20,14 @@ class CategoryManageFragment :
                 popup.menuInflater.inflate(R.menu.category_edit_menu, popup.menu)
                 popup.setOnMenuItemClickListener { menu ->
                     when (menu.itemId) {
-                        R.id.category_edit-> {
+                        R.id.category_edit -> {
 
                         }
                         R.id.category_delete -> {
-
+                            CategoryManageAskDialog(
+                                viewModel,
+                                category
+                            ).show(requireActivity().supportFragmentManager, null)
                         }
                     }
                     false
@@ -44,7 +47,7 @@ class CategoryManageFragment :
         }
 
         binding.btnCreateCategory.setOnClickListener {
-            CategoryManageDialog(viewModel).show(requireActivity().supportFragmentManager, null)
+            CategoryManageAddDialog(viewModel).show(requireActivity().supportFragmentManager, null)
         }
     }
 }
