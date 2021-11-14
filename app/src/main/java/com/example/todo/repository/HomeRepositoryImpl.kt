@@ -9,4 +9,12 @@ class HomeRepositoryImpl(private val localDataSource: LocalDataSource): HomeRepo
     override suspend fun insertCategory(category: Category) {
         localDataSource.insertCategory(category)
     }
+
+    override suspend fun deleteCategory(category: Category) {
+        localDataSource.deleteCategory(category)
+    }
+
+    override suspend fun updateCategory(category: Category) {
+        localDataSource.updateCategory(category)
+    }
 }

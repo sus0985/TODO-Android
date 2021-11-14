@@ -1,9 +1,7 @@
 package com.example.todo.database
 
-import androidx.room.Dao
-import androidx.room.Insert
+import androidx.room.*
 import androidx.room.OnConflictStrategy.REPLACE
-import androidx.room.Query
 import com.example.todo.model.Category
 
 @Dao
@@ -14,4 +12,10 @@ interface CategoryDao {
 
     @Insert(onConflict = REPLACE)
     suspend fun insertCategory(category: Category)
+
+    @Delete
+    suspend fun deleteCategory(category: Category)
+
+    @Update
+    suspend fun updateCategory(category: Category)
 }
