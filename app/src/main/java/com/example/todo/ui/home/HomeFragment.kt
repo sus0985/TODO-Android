@@ -38,7 +38,6 @@ class HomeFragment :
                             findNavController().navigate(R.id.action_navigation_home_to_fragment_category_manage)
                         }
                         R.id.task_search -> {
-
                         }
                     }
                     false
