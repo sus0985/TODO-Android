@@ -55,6 +55,7 @@ class CategoryEditDialog(
         binding.lifecycleOwner = this
 
         binding.etCategory.setText(category)
+        binding.tvTextCount.text = String.format("%02d", category.length)
 
         binding.etCategory.doAfterTextChanged {
             binding.tvTextCount.text = String.format("%02d", it?.length)
